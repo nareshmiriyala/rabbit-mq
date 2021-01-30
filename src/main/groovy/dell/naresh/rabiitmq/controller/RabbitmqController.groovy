@@ -8,6 +8,8 @@ import org.springframework.amqp.core.AmqpTemplate
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
@@ -18,12 +20,9 @@ class RabbitmqController {
     @Autowired
     RabbitTemplate template
 
-    @GetMapping
-    public void send() {
+    @PostMapping
+    public void send(@RequestBody Order order) {
         log.info("Sending message")
-        Order order = new Order()
-        order.orderId = "343243"
-        order.name = "Belt"
         template.convertAndSend(MessageConfig.EXCHANGE, MessageConfig.ROUTING_KEY, order)
     }
 }

@@ -12,8 +12,8 @@ class RabiitMqApplication {
 	static void main(String[] args) {
 		SpringApplication.run(RabiitMqApplication, args)
 	}
-	@RabbitListener(queues = MessageConfig.QUEUE)
-	public static void listen(Order value) {
-		System.out.println("Message read from myQueue : " + value);
-	}
+//	@RabbitListener(queues = MessageConfig.QUEUE)
+//	public static void listen(Order value) {
+//		System.out.println("Message read from myQueue : " + value);
+//	}
 }
